@@ -4,53 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, Paper, Scissors</title>
 </head>
 <body>
     <script>
         function getComputerChoice() {
             let words = ["Rock", "Paper", "Scissors"];
             let number = Math.floor(Math.random() * words.length);
-            console.log(number);
             return words[number];
         }
-
-        function playRound( playerSelection, computerSelection ) {
+1
+        function playRound( playerSelection, computerSelection, score ) {
             playerSelection = playerSelection.toString().toLowerCase();
             computerSelection = computerSelection.toString().toLowerCase();
             if ( playerSelection == computerSelection ) {
-                return "Tie";
+                    score[0]++;    
+                    score[1]++;
+                    return score;
             }
             else if (playerSelection == "rock") {
                 if (computerSelection == "paper") {
-                    return "Computer won, paper > rock"
+                    score[1]++;
+                    return score;
                 }
                 else {
-                    return "Player won, rock > scissors"
+                    score[0]++;
+                    return score;
                 }
             }
             else if (playerSelection == "scissors") {
                 if (computerSelection == "rock") {
-                    return "Computer won, rock > scissors"
+                    score[1]++;
+                    return score;
                 }
                 else {
-                    return "Player won, scissors > paper"
+                    score[0]++;
+                    return score;
                 }
             }
             else if (playerSelection == "paper") {
                 if (computerSelection == "scissors") {
-                    return "Computer won, scissors > paper"
+                    score[1]++;
+                    return score;
                 }
                 else {
-                    return "Player won, paper > rock"
+                    score[0]++;
+                    return score;
                 }
+            }
+            else {
+                return score;
             }
         }
 
-        const playerSelection = "paper";
-        const computerSelection = getComputerChoice();
-        console.log(playerSelection, computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
+        function game(bof) {
+            let score = [0,0];
+
+            for (let i = 0; i < bof; i++) {
+                let playerSelection = prompt("choose rock/paper/scissors", "rock");
+                let computerSelection = getComputerChoice();
+                score = playRound(playerSelection, computerSelection, score);
+                console.log("player " + playerSelection.toUpperCase(), "- " + computerSelection.toUpperCase() + " comp");
+                console.log(score[0], score[1]);
+            }
+
+            if (score[0] > score[1]) {
+                console.log("player won");
+            }
+            else if (score[0] === score[1]) {
+                console.log("it's a tie");
+            }
+            else {
+                console.log("comp won");
+            }
+        }
+
+        let bof = parseInt(prompt("besf of? ", 5));
+        game(bof);
 
     </script>
 </body>
