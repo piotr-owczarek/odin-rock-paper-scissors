@@ -82,7 +82,6 @@
         let playerSelection = this.innerText;
         let computerSelection = getComputerChoice();
         score = playRound(playerSelection, computerSelection, score);
-        console.log("player " + playerSelection.toUpperCase(), "- " + computerSelection.toUpperCase() + " comp");
         player.textContent = `Player score: ${score[0]}`;
         comp.textContent = `Comp score: ${score[1]}`;
         result.textContent = `You have chosen ${playerSelection} and the computer has chosen ${computerSelection}!`;
@@ -108,7 +107,6 @@
     }
 
     buttons.forEach(btn => btn.addEventListener('click', game));
-    //result.innerText = game();
 
 </script>
 </html>
